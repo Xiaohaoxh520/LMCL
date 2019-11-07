@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'mainui.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(500, 350)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("LMCL.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        self.LaunchButton = QtWidgets.QPushButton(MainWindow)
+        self.LaunchButton.setGeometry(QtCore.QRect(0, 310, 190, 40))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(12)
+        font.setItalic(False)
+        self.LaunchButton.setFont(font)
+        self.LaunchButton.setObjectName("pushButton")
+        self.pic_lable = QtWidgets.QLabel(MainWindow)
+        self.pic_lable.setGeometry(QtCore.QRect(189, 0, 311, 350))
+        self.pic_lable.setAlignment(QtCore.Qt.AlignCenter)
+        self.pic_lable.setObjectName("pic_lable")
+        self.paper_build_id_label = QtWidgets.QLabel(MainWindow)
+        self.paper_build_id_label.setGeometry(QtCore.QRect(0, 50, 191, 30))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.paper_build_id_label.setFont(font)
+        self.paper_build_id_label.setStyleSheet("")
+        self.paper_build_id_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.paper_build_id_label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.paper_build_id_label.setObjectName("paper_build_id_label")
+        self.servers_list = QtWidgets.QComboBox(MainWindow)
+        self.servers_list.setGeometry(QtCore.QRect(0, 0, 191, 31))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(12)
+        self.servers_list.setFont(font)
+        self.servers_list.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
+        self.servers_list.setEditable(False)
+        self.servers_list.setCurrentText("")
+        self.servers_list.setObjectName("servers_list")
+        self.current_build_id_label = QtWidgets.QLabel(MainWindow)
+        self.current_build_id_label.setGeometry(QtCore.QRect(0, 30, 191, 30))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setWeight(50)
+        self.current_build_id_label.setFont(font)
+        self.current_build_id_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.current_build_id_label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.current_build_id_label.setObjectName("current_build_id_label")
+        self.server_path_label = QtWidgets.QLabel(MainWindow)
+        self.server_path_label.setGeometry(QtCore.QRect(10, 130, 171, 16))
+        font = QtGui.QFont()
+        font.setFamily("Calibri")
+        self.server_path_label.setFont(font)
+        self.server_path_label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.server_path_label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
+        self.server_path_label.setObjectName("server_path_label")
+        self.update_button = QtWidgets.QPushButton(MainWindow)
+        self.update_button.setEnabled(True)
+        self.update_button.setGeometry(QtCore.QRect(0, 284, 190, 30))
+        font = QtGui.QFont()
+        font.setFamily("Arial")
+        font.setPointSize(9)
+        font.setBold(True)
+        font.setWeight(75)
+        self.update_button.setFont(font)
+        self.update_button.setObjectName("update_button")
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Lite Minecraft Launcher"))
+        self.LaunchButton.setText(_translate("MainWindow", "Launch Minecraft Server"))
+        self.pic_lable.setText(_translate("MainWindow", "No Picture or Loading..."))
+        self.paper_build_id_label.setText(_translate("MainWindow", "Latest Paper Build Id"))
+        self.current_build_id_label.setText(_translate("MainWindow", "Current Paper Build Id"))
+        self.server_path_label.setText(_translate("MainWindow", "Server Path"))
+        self.update_button.setText(_translate("MainWindow", "Update Now (Paper)"))
