@@ -1,6 +1,8 @@
 # Lite Minecraft Launcher
  **English** [简体中文](https://github.com/jinzhijie/LMCL#简体中文)  
  [**Download 下载**](https://github.com/jinzhijie/LMCL/releases)
+ 
+![Preview](https://raw.githubusercontent.com/jinzhijie/LMCL/master/preview.png)  
 
 # English
 ## What is LMCL?
