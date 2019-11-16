@@ -22,10 +22,11 @@ def version():
 
 
 class Poll(threading.Thread):
-    def __init__(self, thread_id, gid):
+    def __init__(self, thread_id, gid, main_window):
         threading.Thread.__init__(self)
         self.threadID = thread_id
         self.name = gid
+        self.main_window = main_window
 
     def run(self):
         print('Start polling...')
@@ -36,7 +37,7 @@ class Poll(threading.Thread):
         #     print(returned)
         #     time.sleep(1)
         aria2c.shutdown()
-        main.updated_done()
+        main_window.updated_done()
         #
         # mainwin = MainWindow()
         # print('test1')
@@ -84,10 +85,10 @@ def get_download_url(mc_ver):
     return url
 
 
-def download(mc_ver, path_to_save):
+def download(mc_ver, path_to_save, main_window):
     aria2c.start()
     time.sleep(1)
     gid = aria2c.adduri(get_download_url(mc_ver), path_to_save)
     # 轮询
-    poll_thread = Poll(1, gid)
+    poll_thread = Poll(1, gid, main_window)
     poll_thread.start()
