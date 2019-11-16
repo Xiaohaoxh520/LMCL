@@ -4,6 +4,9 @@
  
 ![Preview](https://raw.githubusercontent.com/jinzhijie/LMCL/master/preview.png)  
 
+# Thanks for help: [craynic](https://github.com/craynic)
+
+---
 # English
 ## What is LMCL?
  **Lite Minecraft Launcher** is a Python-based minecraft launcher **for servers**. 
@@ -32,6 +35,3 @@
 ### 计划中的
 + 启动服务端
 + 下载状态进度条
-
-# BUGs
-+ 无法获取多线程`return`的值，如无适当方法，将使用`join()`阻塞主线程
