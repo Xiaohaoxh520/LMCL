@@ -105,7 +105,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.update_button.setEnabled(False)
         self.LaunchButton.setEnabled(False)
         paper.download(self.get_server_path_and_current_bid()['ver'],
-                       self.server_path_list[self.servers_list.currentIndex()])
+                       self.server_path_list[self.servers_list.currentIndex()],
+                       self)
 
         import downloading
         # app = QApplication(sys.argv)
@@ -154,13 +155,6 @@ if __name__ == '__main__':
     # PyQt5
     app = QApplication(sys.argv)
     MainWin = MainWindow()
-
-    # 更新完成后的操作
-    def updated_done():
-        MainWin.update_button.setEnabled(True)
-        MainWin.update_button.setText('Done!')
-        MainWin.LaunchButton.setEnabled(True)
-
 
     MainWin.show()
     sys.exit(app.exec_())
