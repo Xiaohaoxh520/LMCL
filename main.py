@@ -108,36 +108,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                        self.server_path_list[self.servers_list.currentIndex()],
                        self)
 
-        import downloading
-        # app = QApplication(sys.argv)
-        # downwin = DownloadWindow()
-        # downwin.show()
-        # sys.exit(app.exec_())
-
     # 更新完成后的操作
     def updated_done(self):
         self.update_button.setEnabled(True)
         self.update_button.setText('Done!')
         self.LaunchButton.setEnabled(True)
-
-
-class DownloadWindow(QDialog, Ui_Downloading_Dialog):
-    def __init__(self, parent=None):
-        super(DownloadWindow, self).__init__(parent)
-        self.setupUi(self)
-        # QDarkStyle
-        self.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
-
-    # 关闭窗口事件
-    def closeEvent(self, event):
-        reply = QMessageBox.question(self, 'Stop Downloading?', "Are you sure to stop downloading right now?",
-                                     QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            # 调用event的accept方法才会真正关闭窗口
-            event.accept()
-        else:
-            # 调用event的ignore方法取消窗口的关闭动作
-            event.ignore()
 
 
 if __name__ == '__main__':

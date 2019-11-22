@@ -1,12 +1,11 @@
 # Lite Aria2c-JsonRPC Lib for Lite Minecraft Launcher
 # Author: Xiao_Jin
-# RPC-Port: 6801
 
 from urllib import request
 import json
 import os
 
-__version = '19-11-07'
+__version = '19-11-22'
 print("Lite Aria2c-JsonRPC Lib, built on " + __version)
 
 
@@ -15,13 +14,17 @@ def version():
     return __version
 
 
+JsonRPC_Port = 6801
+JsonRPC_URL = 'http://localhost:'+str(JsonRPC_Port)+'/jsonrpc'
+
+
 def start():
     if not os.path.isfile('aria2c.conf'):
         aria2c_conf = open('aria2c.conf', 'w+')
         aria2c_conf.write('''continue=true
         max-connection-per-server=16
         enable-rpc=true
-        rpc-listen-port=6801''')
+        rpc-listen-port='''+str(JsonRPC_Port))
         aria2c_conf.close()
     print('[aria2c] RPC-Port: 6801')
     os.popen("aria2c --conf-path=aria2c.conf")
@@ -29,11 +32,11 @@ def start():
 
 def adduri(uris, save_dir):
     json_req = json.dumps({'jsonrpc': '2.0',
-                          'id': 'LMCL',
+                           'id': 'LMCL',
                            'dir': save_dir,
-                          'method': 'aria2.addUri',
-                          'params': [[uris], {'dir': save_dir}]}).encode()
-    c = request.urlopen('http://localhost:6801/jsonrpc', json_req)
+                           'method': 'aria2.addUri',
+                           'params': [[uris], {'dir': save_dir}]}).encode()
+    c = request.urlopen(JsonRPC_URL, json_req)
     returned = c.read().decode()
     # print(returned)
     json_ret = json.loads(returned)
@@ -42,20 +45,23 @@ def adduri(uris, save_dir):
 
 
 def tellstatus(gid):
-    json_req = json.dumps({'jsonrpc': '2.0', 'id': 'LMCL',
-                          'method': 'aria2.tellStatus',
-                          'params': [gid]}).encode()
-    c = request.urlopen('http://localhost:6801/jsonrpc', json_req)
-    returned = c.read().decode()
-    # print(returned)
-    json_ret = json.loads(returned)
-    return json_ret
+    try:
+        json_req = json.dumps({'jsonrpc': '2.0', 'id': 'LMCL',
+                               'method': 'aria2.tellStatus',
+                               'params': [gid]}).encode()
+        c = request.urlopen(JsonRPC_URL, json_req)
+        returned = c.read().decode()
+        # print(returned)
+        json_ret = json.loads(returned)
+        return json_ret
+    except ConnectionRefusedError:
+        print('[ERROR] ConnectionRefusedError! The possible reasons: aria2c has not started.')
 
 
 def shutdown():
     json_req = json.dumps({'jsonrpc': '2.0', 'id': 'LMCL',
-                          'method': 'aria2.shutdown'}).encode()
-    c = request.urlopen('http://localhost:6801/jsonrpc', json_req)
+                           'method': 'aria2.shutdown'}).encode()
+    c = request.urlopen(JsonRPC_URL, json_req)
     returned = c.read().decode()
     # print(returned)
     json_ret = json.loads(returned)
@@ -64,5 +70,5 @@ def shutdown():
         print('[aria2c] has been shutdown successfully!')
     else:
         ok = False
-        print('[aria2c] hasn\'t been shutdown successfully! Please kill the process!')
+        print('[aria2c] has not been shutdown successfully! Please kill the process!')
     return ok

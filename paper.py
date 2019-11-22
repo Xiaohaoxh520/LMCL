@@ -5,12 +5,9 @@ import json
 import aria2c
 import threading
 import time
-import main
-from mainui import *
-from main import MainWindow
-from PyQt5.QtWidgets import QMainWindow
 
-__version = '19-11-15'
+
+__version = '19-11-22'
 print("Lite Paper-API Lib, built on " + __version)
 
 UA = "Mozilla/5.0 (Windows 10; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36"
@@ -25,25 +22,23 @@ class Poll(threading.Thread):
     def __init__(self, thread_id, gid, main_window):
         threading.Thread.__init__(self)
         self.threadID = thread_id
-        self.name = gid
+        self.gid = gid
         self.main_window = main_window
 
     def run(self):
-        print('Start polling...')
-        # status = aria2c.tellstatus(self.name)
-        # while status['result']['status'] == 'active':
-        #     status = aria2c.tellstatus(self.name)
-        #     returned = aria2c.tellstatus(self.name)
-        #     print(returned)
-        #     time.sleep(1)
+        print('[Paper] Start polling...')
+        # 获取状态
+        try:
+            status = aria2c.tellstatus(self.gid)
+            while status['result']['status'] == 'active':
+                status = aria2c.tellstatus(self.gid)
+                returned = aria2c.tellstatus(self.gid)
+                print(returned)
+                time.sleep(1)
+        except:
+            print('[ERROR]!')
         aria2c.shutdown()
-        main_window.updated_done()
-        #
-        # mainwin = MainWindow()
-        # print('test1')
-        # mainwin.update_button.setEnabled(True)
-        # mainwin.update_button.setText('Done!')
-        # mainwin.LaunchButton.setEnabled(True)
+        self.main_window.updated_done()
 
 
 def get_latest():
@@ -92,3 +87,5 @@ def download(mc_ver, path_to_save, main_window):
     # 轮询
     poll_thread = Poll(1, gid, main_window)
     poll_thread.start()
+    import downloading
+    downloading.version()
