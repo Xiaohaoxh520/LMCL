@@ -1,11 +1,14 @@
 # Lite Minecraft Launcher
+![Python3](https://img.shields.io/badge/Python-3-blue?color=3776AB&&logo=python)  
  **English** [简体中文](https://github.com/jinzhijie/LMCL#简体中文)  
  [**Download 下载**](https://github.com/jinzhijie/LMCL/releases)
  
 ![Preview](https://raw.githubusercontent.com/jinzhijie/LMCL/master/preview.png)  
 
 # Thanks for help: [craynic](https://github.com/craynic)
-
+---
+# Bugs
++ See [issues #2](https://github.com/jinzhijie/LMCL/issues/2)
 ---
 # English
 ## What is LMCL?
